@@ -1,0 +1,12 @@
+.validationError{
+    color: crimson;
+}
+.ingredient-group{
+    background: ivory;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 1%;
+    padding: 5px;
+    border: 5px black;
+    border-radius: 30px;
+}

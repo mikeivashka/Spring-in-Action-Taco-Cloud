@@ -39,14 +39,17 @@ public class DesignTacoController {
         for (Type type : types){
             model.addAttribute(type.toString().toLowerCase(), ingredients.stream().filter(t -> t.getType() == type).toArray());
         }
-        model.addAttribute("design", new Taco());
+        model.addAttribute("taco", new Taco());
         return "design";
     }
 
     @PostMapping
     public String processDesign(@Valid Taco taco, Errors errors){
         //Save the taco design
-        if(errors.hasErrors())return "design";
+        if(errors.hasErrors()){
+            log.info("Invalid input");
+            return "design";
+        }
         log.info("Processing design: " + taco.toString());
         return "redirect:/orders/current";
     }
