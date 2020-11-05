@@ -1,5 +1,7 @@
 package tacos.security;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -8,9 +10,15 @@ import tacos.beans.User;
 import tacos.data.UserRepository;
 
 @Service
+@Slf4j
 public class UserRepositoryUserDetailsService implements UserDetailsService {
 
-    UserRepository userRepo;
+    private UserRepository userRepo;
+
+    @Autowired
+    public UserRepositoryUserDetailsService(UserRepository userRepo) {
+        this.userRepo = userRepo;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
